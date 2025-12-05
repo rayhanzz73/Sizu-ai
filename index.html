@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+    <title>Shizuka AI 💖 - Your Sweet Virtual Girlfriend</title>
+    <meta name="description" content="Shizuka AI - Your adorable virtual girlfriend AI assistant for conversations, image generation, music, and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FF6B9D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Status Bar Spacer -->
+    <div class="status-bar-spacer"></div>
+    
+    <div class="app-container">
+        <!-- Top App Bar -->
+        <header class="top-app-bar">
+            <div class="app-bar-content">
+                <div class="app-bar-left">
+                    <div class="app-logo">
+                        <div class="logo-icon">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Shizuka AI</h1>
+                            <span class="version-badge">v8B</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-bar-right">
+                    <div class="stats-chips">
+                        <div class="stat-chip">
+                            <span class="stat-number" id="total-requests">0</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat-chip">
+                            <span class="stat-number" id="user-requests">0</span>
+                            <span class="stat-label">Yours</span>
+                        </div>
+                    </div>
+                    
+                    <button class="icon-button" onclick="clearChat()" title="Clear Chat">
+                        <i class="material-icons">delete_outline</i>
+                        <div class="ripple"></div>
+                    </button>
+                    
+                    <button class="icon-button menu-button" onclick="toggleMenu()" title="More Options">
+                        <i class="material-icons">more_vert</i>
+                        <div class="ripple"></div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdown-menu">
+                <div class="menu-item" onclick="window.open('/admin', '_blank')">
+                    <i class="material-icons">analytics</i>
+                    <span>Admin Dashboard</span>
+                </div>
+                <div class="menu-item" onclick="clearChat()">
+                    <i class="material-icons">delete_outline</i>
+                    <span>Clear Chat</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="chat-container" id="chat-messages">
+                <!-- Welcome Card -->
+                <div class="welcome-card">
+                    <div class="welcome-header">
+                        <div class="welcome-avatar">
+                            <i class="material-icons">favorite</i>
+                        </div>
+                        <div class="welcome-text">
+                            <h2>Welcome to Shizuka AI</h2>
+                            <p>Your sweet virtual girlfriend AI. I'm here to chat, create, and make you smile! 💕</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Cards -->
+                    <div class="feature-grid">
+                        <div class="feature-card" onclick="sendExample('Generate a beautiful landscape')">
+                            <div class="feature-icon">
+                                <i class="material-icons">image</i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Image Generation</h3>
+                                <p>Create beautiful AI art</p>
+                            </div>
+                            <div class="ripple"></div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="sendExample('Play Shape of You by Ed Sheeran')">
+                            <div class="feature-icon">
+                                <i class="material-icons">music_note</i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Music & Audio</h3>
+                                <p>Play your favorite songs</p>
+                            </div>
+                            <div class="ripple"></div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="sendExample('Tell me about quantum computing')">
+                            <div class="feature-icon">
+                                <i class="material-icons">psychology</i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Smart Conversations</h3>
+                                <p>Ask me anything you want</p>
+                            </div>
+                            <div class="ripple"></div>
+                        </div>
+                        
+                        <div class="feature-card" onclick="sendExample('shoti')">
+                            <div class="feature-icon">
+                                <i class="material-icons">video_library</i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Video Content</h3>
+                                <p>Get entertaining videos</p>
+                            </div>
+                            <div class="ripple"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="quick-actions-section">
+                        <h3>Try these prompts:</h3>
+                        <div class="prompt-chips">
+                            <button class="prompt-chip" onclick="sendExample('Generate a futuristic cityscape')">
+                                <i class="material-icons">landscape</i>
+                                Generate Art
+                                <div class="ripple"></div>
+                            </button>
+                            <button class="prompt-chip" onclick="sendExample('play trending music')">
+                                <i class="material-icons">trending_up</i>
+                                Trending Music
+                                <div class="ripple"></div>
+                            </button>
+                            <button class="prompt-chip" onclick="sendExample('tell me a joke')">
+                                <i class="material-icons">sentiment_very_satisfied</i>
+                                Tell Joke
+                                <div class="ripple"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Input Section -->
+        <div class="bottom-input-section">
+            <!-- Quick Actions Bar -->
+            <div class="quick-actions-bar" id="quick-actions-bar">
+                <button class="quick-action-btn" onclick="sendExample('generate a beautiful landscape')">
+                    <i class="material-icons">landscape</i>
+                    <span>Art</span>
+                    <div class="ripple"></div>
+                </button>
+                <button class="quick-action-btn" onclick="sendExample('play music')">
+                    <i class="material-icons">music_note</i>
+                    <span>Music</span>
+                    <div class="ripple"></div>
+                </button>
+                <button class="quick-action-btn" onclick="sendExample('tell me a joke')">
+                    <i class="material-icons">sentiment_very_satisfied</i>
+                    <span>Joke</span>
+                    <div class="ripple"></div>
+                </button>
+                <button class="quick-action-btn" onclick="sendExample('shoti')">
+                    <i class="material-icons">video_library</i>
+                    <span>Video</span>
+                    <div class="ripple"></div>
+                </button>
+            </div>
+            
+            <!-- Input Container -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <!-- Image Upload Button -->
+                    <button class="input-action-btn" onclick="document.getElementById('image-input').click()" title="Upload Image">
+                        <i class="material-icons">photo_camera</i>
+                        <div class="ripple"></div>
+                    </button>
+                    <input type="file" id="image-input" accept="image/*" style="display: none;">
+                    
+                    <!-- Text Input Field -->
+                    <div class="text-input-field">
+                        <textarea id="message-input" placeholder="Ask me anything... 💕" rows="1" maxlength="2000"></textarea>
+                        <div class="input-underline"></div>
+                    </div>
+                    
+                    <!-- Send Button -->
+                    <button class="send-fab" id="send-btn" onclick="sendMessage()" disabled="">
+                        <i class="material-icons">send</i>
+                        <div class="ripple"></div>
+                    </button>
+                </div>
+                
+                <!-- Character Count -->
+                <div class="input-footer">
+                    <span class="char-count" id="char-count">0/2000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Preview Modal -->
+        <div class="image-preview-modal" id="image-preview">
+            <div class="modal-backdrop" onclick="removeImage()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Image Preview</h3>
+                    <button class="icon-button" onclick="removeImage()">
+                        <i class="material-icons">close</i>
+                        <div class="ripple"></div>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="preview-img" src="" alt="Preview">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-card">
+            <div class="loading-animation">
+                <div class="spinner-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <h3>Shizuka is thinking...</h3>
+            <p>Creating something special for you 💕</p>
+        </div>
+    </div>
+
+    <!-- Snackbar Container -->
+    <div class="snackbar-container" id="toast-container"></div>
+
+    <!-- Navigation Bar Spacer -->
+    <div class="nav-bar-spacer"></div>
+
+    <script src="js/script.js"></script>
+
+
+</body></html>
